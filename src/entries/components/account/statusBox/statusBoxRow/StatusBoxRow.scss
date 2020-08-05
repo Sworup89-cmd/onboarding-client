@@ -1,0 +1,18 @@
+@import "../../../variables";
+
+li.status-box-row {
+  list-style: none;
+}
+
+ul.status-box-row {
+  padding: 0;
+  margin-bottom: 0;
+}
+
+.fa.fa-check {
+  color: $green;
+}
+
+.fa.fa-times {
+  color: $red;
+}

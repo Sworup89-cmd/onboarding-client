@@ -1,0 +1,114 @@
+{
+  "name": "onboarding-client",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@sentry/browser": "^5.6.3",
+    "@transferwise/eslint-config": "^2.1.0",
+    "@types/enzyme": "^3.10.3",
+    "@types/jest": "^24.0.18",
+    "@types/node": "^12.7.3",
+    "@types/react": "^16.9.2",
+    "@types/react-dom": "^16.9.0",
+    "@types/react-global-configuration": "^1.3.1",
+    "@types/react-redux": "^7.1.2",
+    "@types/react-router-dom": "^4.3.5",
+    "array.prototype.find": "^2.1.0",
+    "axios": "^0.19.0",
+    "bootstrap": "4.3.1",
+    "classnames": "^2.2.6",
+    "connected-react-router": "6.5.2",
+    "downloadjs": "^1.4.7",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.14.3",
+    "express": "^4.17.1",
+    "express-http-proxy": "^1.2.0",
+    "font-awesome": "^4.7.0",
+    "history": "^4.9.0",
+    "hwcrypto-js": "git://github.com/ErkoRisthein/hwcrypto.js.git#0.0.14",
+    "lodash": "^4.17.15",
+    "mixpanel-browser": "^2.29.1",
+    "moment": "^2.22.2",
+    "node-sass": "^4.12.0",
+    "npm-run-all": "^4.1.3",
+    "promise": "^8.0.3",
+    "prop-types": "^15.7.2",
+    "qs": "^6.8.0",
+    "react": "16.9.0",
+    "react-app-polyfill": "^1.0.2",
+    "react-dom": "16.9.0",
+    "react-facebook": "^5.0.3",
+    "react-ga": "^2.6.0",
+    "react-global-configuration": "^1.2.1",
+    "react-mixpanel": "0.0.11",
+    "react-redux": "6.0.1",
+    "react-router-dom": "5.0.1",
+    "react-scripts": "^3.1.1",
+    "react-tooltip": "^3.11.0",
+    "redux": "^4.0.4",
+    "redux-form": "^8.2.6",
+    "redux-thunk": "^2.3.0",
+    "retranslate": "^1.0.3",
+    "typescript": "^3.6.2",
+    "uuid": "^3.3.3"
+  },
+  "scripts": {
+    "heroku-postbuild": "npm run build-onboarding",
+    "start": "NODE_ENV=production node server",
+    "prestart": "npm run build-onboarding",
+    "build-onboarding": "APP_NAME=onboarding npm run build-app",
+    "build-signup": "APP_NAME=signup npm run build-app",
+    "build-login": "APP_NAME=login npm run build-app",
+    "build-app": "npm-run-all backup-index create-index-for-app build restore-index",
+    "backup-index": "mv src/index.js src/index.js.backup",
+    "create-index-for-app": "echo \"import './entries/$APP_NAME';\" > src/index.js",
+    "restore-index": "mv src/index.js.backup src/index.js",
+    "build": "react-scripts build",
+    "develop": "react-scripts start",
+    "develop-production": "HTTPS=true HOST=local.tuleva.ee npm run develop",
+    "develop-production-win": "set HTTPS=true&&set HOST=local.tuleva.ee&&npm run develop",
+    "lint": "eslint --ext .js,.ts,.jsx,.tsx src/",
+    "test": "react-scripts test --coverage",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "babel-eslint": "10.0.2",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
+    "eslint": "^6.3.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-prettier": "^4.3.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "husky": "^2.7.0",
+    "lint-staged": "^8.2.1",
+    "prettier": "1.18.2",
+    "react-test-renderer": "^16.9.0",
+    "redux-mock-store": "^1.5.3"
+  },
+  "jest": {
+    "coverageReporters": [
+      "lcov",
+      "text"
+    ]
+  },
+  "lint-staged": {
+    "*.{js,ts,jsx,tsx}": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "proxy": "http://localhost:9000",
+  "//": "https://onboarding-service.tuleva.ee",
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}
